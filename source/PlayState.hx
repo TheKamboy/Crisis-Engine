@@ -4373,7 +4373,7 @@ class PlayState extends MusicBeatState
 		note.rating = daRating.name;
 		score = daRating.score;
 
-		if(daRating.noteSplash && !note.noteSplashDisabled)
+		if(daRating.noteSplash && !note.noteSplashDisabled && !cpuControlled)
 		{
 			spawnNoteSplashOnNote(note);
 		}
@@ -4396,7 +4396,9 @@ class PlayState extends MusicBeatState
 			pixelShitPart1 = 'pixelUI/';
 			pixelShitPart2 = '-pixel';
 		}
-
+		
+		if (!cpuControlled) 
+		{
 		rating.loadGraphic(Paths.image(pixelShitPart1 + daRating.image + pixelShitPart2));
 		rating.cameras = [camHUD];
 		rating.screenCenter();
@@ -4520,6 +4522,7 @@ class PlayState extends MusicBeatState
 			startDelay: Conductor.crochet * 0.002
 		});
 	}
+}
 
 	private function onKeyPress(event:KeyboardEvent):Void
 	{
@@ -4724,65 +4727,48 @@ class PlayState extends MusicBeatState
 	}
 
 	function noteMiss(daNote:Note):Void { //You didn't hit the key and let it go offscreen, also used by Hurt Notes
-		callOnHScripts('noteMiss', [notes.members.indexOf(daNote), daNote.noteData, daNote.noteType, daNote.isSustainNote]);
-		//Dupe note remove
-		if (daNote.isSustainNote) {
-			if (daNote.parent != null) {
-				if (!daNote.parent.shouldbehidden) {
-					songMisses++;
-					totalPlayed++;
-					if(!practiceMode) songScore -= 5;
-				}
-				vocals.volume = 0;	// you shouldn't sing if you're doing misses
-				//notes.remove(daNote, true);
-				for ( i in daNote.parent.tail ) {
-					if (i != null) i.alpha = 0.4; 		// kade engine vibes?
-				}
-				daNote.parent.shouldbehidden = true;
-				daNote.kill();
-				//daNote.destroy();
-				RecalculateRating();
-				return;
-			}
+	callOnHScripts('noteMiss', [notes.members.indexOf(daNote), daNote.noteData, daNote.noteType, daNote.isSustainNote, daNote.ID]);	
+	//Dupe note remove
+	notes.forEachAlive(function(note:Note) {
+		if (daNote != note && daNote.mustPress && daNote.noteData == note.noteData && daNote.isSustainNote == note.isSustainNote && Math.abs(daNote.strumTime - note.strumTime) < 1) {
+			note.kill();
+			notes.remove(note, true);
+			note.destroy();
 		}
-		notes.forEachAlive(function(note:Note) {
-			if (daNote != note && daNote.mustPress && daNote.noteData == note.noteData && daNote.isSustainNote == note.isSustainNote && Math.abs(daNote.strumTime - note.strumTime) < 1) {
-				note.kill();
-				notes.remove(note, true);
-				note.destroy();
-			}
-		});
-		combo = 0;
-		health -= daNote.missHealth * healthLoss;
-		
-		if(instakillOnMiss)
-		{
-			vocals.volume = 0;
-			doDeathCheck(true);
-		}
-
-		//For testing purposes
-		//trace(daNote.missHealth);
-		songMisses++;
+	});
+	combo = 0;
+	health -= daNote.missHealth * healthLoss;
+	
+	if(instakillOnMiss)
+	{
 		vocals.volume = 0;
-		if(!practiceMode) songScore -= 10;
-
-		totalPlayed++;
-		RecalculateRating(true);
-
-		var char:Character = boyfriend;
-		if(daNote.gfNote) {
-			char = gf;
-		}
-
-		if(char != null && !daNote.noMissAnimation && char.hasMissAnimations)
-		{
-			var animToPlay:String = singAnimations[Std.int(Math.abs(daNote.noteData))] + 'miss' + daNote.animSuffix;
-			char.playAnim(animToPlay, true);
-		}
-
-		callOnLuas('noteMiss', [notes.members.indexOf(daNote), daNote.noteData, daNote.noteType, daNote.isSustainNote]);
+		doDeathCheck(true);
 	}
+
+	//For testing purposes
+	//trace(daNote.missHealth);
+	songMisses++;
+	vocals.volume = 0;
+	if(!practiceMode) songScore -= 10;
+
+	totalPlayed++;
+	RecalculateRating(true);
+
+	var char:Character = boyfriend;
+	if(daNote.gfNote) {
+		char = gf;
+	}
+
+	if(char != null && !daNote.noMissAnimation && char.hasMissAnimations)
+	{
+		var animToPlay:String = singAnimations[Std.int(Math.abs(daNote.noteData))] + 'miss' + daNote.animSuffix;
+		char.playAnim(animToPlay, true);
+	}
+
+	callOnLuas('noteMiss', [notes.members.indexOf(daNote), daNote.noteData, daNote.noteType, daNote.isSustainNote, daNote.ID]);
+}
+
+
 
 	function noteMissPress(direction:Int = 1):Void //You pressed a key when there was no notes to press for this key
 	{
@@ -4961,8 +4947,8 @@ class PlayState extends MusicBeatState
 				combo += 1;
 				if(combo > 9999) combo = 9999;
 				popUpScore(note);
-				health += note.hitHealth * healthGain;
 			}
+			health += note.hitHealth * healthGain;
 
 			if(!note.noAnimation) {
 				var animToPlay:String = singAnimations[Std.int(Math.abs(note.noteData))];
