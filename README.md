@@ -1,6 +1,4 @@
-note: I'm probably going to rename this to OS Crisis Engine, because I'm probably going to make this a bit like Strident Crisis Engine.
-
-# Thank you for checking out my modified version of OS Engine! Now, here is the rest of the stuff.
+# Thank you for checking out OS Crisis Engine! Now, onto the regular OS Engine ReadMe.
 
 ![](https://media.discordapp.net/attachments/969211146412363828/980124443164672000/23336ff517a80f27.png?width=1101&height=701)
 
