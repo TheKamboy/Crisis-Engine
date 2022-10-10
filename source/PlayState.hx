@@ -85,16 +85,16 @@ class PlayState extends MusicBeatState
 	public static var cameramovingoffsetbf = 20; // idk why i made literally same variable
 
 	public static var ratingStuff:Array<Dynamic> = [
-		['F', 0.2], //From 0% to 19%
-		['E', 0.4], //From 20% to 39%
-		['D', 0.5], //From 40% to 49%
-		['C', 0.6], //From 50% to 59%
-		['B', 0.69], //From 60% to 68%
-		['A', 0.7], //69%
-		['AA', 0.8], //From 70% to 79%
-		['AAA', 0.9], //From 80% to 89%
-		['AAAA', 1], //From 90% to 99%
-		['AAAAA', 1] //The value on this one isn't used actually, since Perfect is always "1"
+		['Horribly Shit', 0.2], //From 0% to 19%
+		['Done For', 0.4], //From 20% to 39%
+		['Bad', 0.5], //From 40% to 49%
+		['Ok', 0.6], //From 50% to 59%
+		['Eh', 0.69], //From 60% to 68%
+		[':)', 0.7], //69%
+		['Good', 0.8], //From 70% to 79%
+		['Great', 0.9], //From 80% to 89%
+		['Nice!', 1], //From 90% to 99%
+		['PERFECT!!', 1] //The value on this one isn't used actually, since Perfect is always "1"
 	];
 	public static var animatedShaders:Map<String, DynamicShaderHandler> = new Map<String, DynamicShaderHandler>();
 	public var modchartTweens:Map<String, FlxTween> = new Map<String, FlxTween>();
@@ -340,16 +340,16 @@ class PlayState extends MusicBeatState
 		Paths.clearStoredMemory();
 
 		ratingStuff = [
-			['F', 0.2], //From 0% to 19%
-			['E', 0.4], //From 20% to 39%
-			['D', 0.5], //From 40% to 49%
-			['C', 0.6], //From 50% to 59%
-			['B', 0.69], //From 60% to 68%
-			['A', 0.7], //69%
-			['AA', 0.8], //From 70% to 79%
-			['AAA', 0.9], //From 80% to 89%
-			['AAAA', 1], //From 90% to 99%
-			['AAAAA', 1] //The value on this one isn't used actually, since Perfect is always "1"
+			['Horribly Shit', 0.2], //From 0% to 19%
+			['Done For', 0.4], //From 20% to 39%
+			['Bad', 0.5], //From 40% to 49%
+			['Ok', 0.6], //From 50% to 59%
+			['Eh', 0.69], //From 60% to 68%
+			[':)', 0.7], //69%
+			['Good', 0.8], //From 70% to 79%
+			['Great', 0.9], //From 80% to 89%
+			['Nice!', 1], //From 90% to 99%
+			['PERFECT!!', 1] //The value on this one isn't used actually, since Perfect is always "1"
 		];
 
 		// for lua
@@ -1288,34 +1288,40 @@ class PlayState extends MusicBeatState
 		add(iconP2);
 		reloadHealthBarColors();
 
-		scoreTxt = new FlxText(0, healthBarBG.y + 28, FlxG.width, "", 16);
-		scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		// scoreTxt = new FlxText(0, healthBarBG.y + 28, FlxG.width, "", 16);
+		// scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		// scoreTxt.scrollFactor.set();
+		// scoreTxt.borderSize = 1.2;
+		scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 20);
+		scoreTxt.setFormat(Paths.font("vcr.ttf"), 17, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
-		scoreTxt.borderSize = 1.2;
+		scoreTxt.borderSize = 1.25;
 		if (!ClientPrefs.hideScoreText && !ClientPrefs.hideHud) {
+			scoreTxt.visible = true;
+		} else if (cpuControlled) {
 			scoreTxt.visible = true;
 		} else {
 			scoreTxt.visible = false;
 		}
 		add(scoreTxt);
 
-		songTxt = new FlxText(12, FlxG.height - 24, 0, "", 8);
-		songTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		songTxt = new FlxText(10, FlxG.height - 28, 0, curSong + " (" + storyDifficultyText + ") - OS Crisis Engine", 20);
+		songTxt.setFormat(Paths.font("vcr.ttf"), 17, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		songTxt.scrollFactor.set();
-		songTxt.borderSize = 1;
+		songTxt.borderSize = 1.25;
+		songTxt.alpha = 0.6;
 		if (!ClientPrefs.hideWatermark && !ClientPrefs.hideHud) {
-			songTxt.visible = true;
+		 	songTxt.visible = true;
 		} else {
 			songTxt.visible = false;
 		}
 		add(songTxt);
-		songTxt.text = curSong + " (" + storyDifficultyText + ") " + "| OS " + MainMenuState.osEngineVersion;
 
-		botplayTxt = new FlxText(400, timeBarBG.y + 55, FlxG.width - 800, "BOTPLAY", 32);
+		botplayTxt = new FlxText(400, timeBarBG.y + 55, FlxG.width - 800, "CHEATER!", 32);
 		botplayTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		botplayTxt.scrollFactor.set();
 		botplayTxt.borderSize = 1.25;
-		botplayTxt.visible = cpuControlled;
+		botplayTxt.visible = false;
 		add(botplayTxt);
 		if(ClientPrefs.downScroll) {
 			botplayTxt.y = timeBarBG.y - 78;
@@ -2466,17 +2472,35 @@ class PlayState extends MusicBeatState
 
 	public function updateScore(miss:Bool = false)
 	{
+		// Old HUD + Cheater Text
+		// if (cpuControlled) {
+		// 	scoreTxt.text = 'Cheater! | BOTPLAY';
+		// } else if(ratingName == '?') {
+		// 	scoreTxt.text = 'Score: ' + songScore 
+		// 	+ ' | Combo Breaks: ' + songMisses 
+		// 	+ ' | Average: ?'
+		// 	+ ' | Accuracy: ' + ratingName;
+		// } else {
+		// 	scoreTxt.text = 'Score: ' + songScore 
+		// 	+ ' | Combo Breaks: ' + songMisses 
+		// 	+ ' | Average: ' + Math.round(averageMs) + 'ms'
+		// 	+ ' | Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '%' 
+		// 	+ ' | ' + ratingName + ' [' + ratingFC + ']';
+		// }
+
+		// Modified DABDE HUD
 		if(ratingName == '?') {
-			scoreTxt.text = 'Score: ' + songScore 
-			+ ' | Combo Breaks: ' + songMisses 
-			+ ' | Average: ?'
-			+ ' | Accuracy: ' + ratingName;
+			scoreTxt.text = 'Average: ' + 'N/A | Score: ' + songScore + ' | Combo Breaks: ' + songMisses + ' | Accuracy: 0% | N/A';
 		} else {
-			scoreTxt.text = 'Score: ' + songScore 
-			+ ' | Combo Breaks: ' + songMisses 
-			+ ' | Average: ' + Math.round(averageMs) + 'ms'
-			+ ' | Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '%' 
-			+ ' | ' + ratingName + ' [' + ratingFC + ']';
+			scoreTxt.text = 'Average: ' + Math.round(averageMs) + 'ms | Score: ' + songScore + ' | Combo Breaks: ' + songMisses + ' | Accuracy: ' + Math.floor(ratingPercent * 100) + '% | ' + ratingName + ' (' + ratingFC + ')';
+		}
+		if(cpuControlled) {
+			scoreTxt.text = 'Cheater! | BotPlay ';
+		}
+		if(practiceMode && ratingName == "?" && !cpuControlled) {
+			scoreTxt.text = 'Average: ' + 'N/A | Combo Breaks: ' + songMisses + ' | Practice Mode ';
+		} else if (practiceMode && !cpuControlled) {
+			scoreTxt.text = 'Average: ' + Math.round(averageMs) + 'ms | Combo Breaks: ' + songMisses + ' | Practice Mode ';
 		}
 
 		if(ClientPrefs.scoreZoom && !miss && !cpuControlled)

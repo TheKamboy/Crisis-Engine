@@ -47,7 +47,7 @@ class DiscordClient
 			details: "In the Menus",
 			state: null,
 			largeImageKey: 'icon',
-			largeImageText: "OS Engine — Modded Psych Engine"
+			largeImageText: "OS Crisis Engine — Modified OS Engine"
 		});
 	}
 
