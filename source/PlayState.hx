@@ -1288,6 +1288,7 @@ class PlayState extends MusicBeatState
 		add(iconP2);
 		reloadHealthBarColors();
 
+		// OLD SCORE SETTINGS
 		// scoreTxt = new FlxText(0, healthBarBG.y + 28, FlxG.width, "", 16);
 		// scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		// scoreTxt.scrollFactor.set();
@@ -1305,6 +1306,7 @@ class PlayState extends MusicBeatState
 		}
 		add(scoreTxt);
 
+		// Made songTxt have similar settings so it doesn't look weird.
 		songTxt = new FlxText(10, FlxG.height - 28, 0, curSong + " (" + storyDifficultyText + ") - OS Crisis Engine", 20);
 		songTxt.setFormat(Paths.font("vcr.ttf"), 17, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		songTxt.scrollFactor.set();
@@ -1317,6 +1319,7 @@ class PlayState extends MusicBeatState
 		}
 		add(songTxt);
 
+		// Made it not visible because scoreTxt shows when BotPlay is enabled.
 		botplayTxt = new FlxText(400, timeBarBG.y + 55, FlxG.width - 800, "CHEATER!", 32);
 		botplayTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		botplayTxt.scrollFactor.set();
@@ -2488,7 +2491,7 @@ class PlayState extends MusicBeatState
 		// 	+ ' | ' + ratingName + ' [' + ratingFC + ']';
 		// }
 
-		// Modified DABDE HUD
+		// Modified VDBDE HUD
 		if(ratingName == '?') {
 			scoreTxt.text = 'Average: ' + 'N/A | Score: ' + songScore + ' | Combo Breaks: ' + songMisses + ' | Accuracy: 0% | N/A';
 		} else {
