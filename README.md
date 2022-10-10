@@ -15,7 +15,7 @@ If you get an error about StatePointer when using Lua, run `haxelib remove linc_
 
 If you want video support on your mod, simply do `haxelib install hxCodec` on a Command prompt/PowerShell
 
-## OS Engine Modified Creator:
+## OS Crisis Engine Creator:
 * TheKamboy - Editing some code and stuff
 
 ## OS Engine Credits:
