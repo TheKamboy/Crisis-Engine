@@ -11,8 +11,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed Botplay Lag by making Note Splashes and Ratings turn off during song when on Botplay
 
-- 
-
 - Brought back Old Health Gain and Drain style
 
 - Changed some text
