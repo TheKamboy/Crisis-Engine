@@ -1288,15 +1288,10 @@ class PlayState extends MusicBeatState
 		add(iconP2);
 		reloadHealthBarColors();
 
-		// OLD SCORE SETTINGS
-		// scoreTxt = new FlxText(0, healthBarBG.y + 28, FlxG.width, "", 16);
-		// scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		// scoreTxt.scrollFactor.set();
-		// scoreTxt.borderSize = 1.2;
-		scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 20);
-		scoreTxt.setFormat(Paths.font("vcr.ttf"), 17, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		scoreTxt = new FlxText(0, healthBarBG.y + 28, FlxG.width, "", 16);
+		scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
-		scoreTxt.borderSize = 1.25;
+		scoreTxt.borderSize = 1.2;
 		if (!ClientPrefs.hideScoreText && !ClientPrefs.hideHud) {
 			scoreTxt.visible = true;
 		} else if (cpuControlled) {
@@ -2475,35 +2470,34 @@ class PlayState extends MusicBeatState
 
 	public function updateScore(miss:Bool = false)
 	{
-		// Old HUD + Cheater Text
-		// if (cpuControlled) {
-		// 	scoreTxt.text = 'Cheater! | BOTPLAY';
-		// } else if(ratingName == '?') {
-		// 	scoreTxt.text = 'Score: ' + songScore 
-		// 	+ ' | Combo Breaks: ' + songMisses 
-		// 	+ ' | Average: ?'
-		// 	+ ' | Accuracy: ' + ratingName;
-		// } else {
-		// 	scoreTxt.text = 'Score: ' + songScore 
-		// 	+ ' | Combo Breaks: ' + songMisses 
-		// 	+ ' | Average: ' + Math.round(averageMs) + 'ms'
-		// 	+ ' | Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '%' 
-		// 	+ ' | ' + ratingName + ' [' + ratingFC + ']';
-		// }
-
-		// Modified VDBDE HUD
 		if(ratingName == '?') {
-			scoreTxt.text = 'Average: ' + 'N/A | Score: ' + songScore + ' | Combo Breaks: ' + songMisses + ' | Accuracy: 0% | N/A';
+			scoreTxt.text = 'Score: ' + songScore 
+			+ ' | Combo Breaks: ' + songMisses 
+			+ ' | Average: ?'
+			+ ' | Accuracy: ' + ratingName;
 		} else {
-			scoreTxt.text = 'Average: ' + Math.round(averageMs) + 'ms | Score: ' + songScore + ' | Combo Breaks: ' + songMisses + ' | Accuracy: ' + Math.floor(ratingPercent * 100) + '% | ' + ratingName + ' (' + ratingFC + ')';
+			scoreTxt.text = 'Score: ' + songScore 
+			+ ' | Combo Breaks: ' + songMisses 
+			+ ' | Average: ' + Math.round(averageMs) + 'ms'
+			+ ' | Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '%' 
+			+ ' | ' + ratingName + ' [' + ratingFC + ']';
 		}
+
 		if(cpuControlled) {
 			scoreTxt.text = 'Cheater! | BotPlay ';
 		}
 		if(practiceMode && ratingName == "?" && !cpuControlled) {
-			scoreTxt.text = 'Average: ' + 'N/A | Combo Breaks: ' + songMisses + ' | Practice Mode ';
+			scoreTxt.text = 'Score: ' + songScore 
+			+ ' | Combo Breaks: ' + songMisses 
+			+ ' | Average: ?'
+			+ ' | Accuracy: ' + ratingName
+			+ ' | Practice Mode';
 		} else if (practiceMode && !cpuControlled) {
-			scoreTxt.text = 'Average: ' + Math.round(averageMs) + 'ms | Combo Breaks: ' + songMisses + ' | Practice Mode ';
+			scoreTxt.text = 'Score: ' + songScore 
+			+ ' | Combo Breaks: ' + songMisses 
+			+ ' | Average: ' + Math.round(averageMs) + 'ms'
+			+ ' | Accuracy: ' + ratingName
+			+ ' | Practice Mode';
 		}
 
 		if(ClientPrefs.scoreZoom && !miss && !cpuControlled)
