@@ -5,7 +5,22 @@ All notable changes will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.5.2 (Modified 1.5.1)] - 2022-10-4
+
+## [OS Crisis Engine v1.0] - 2022-10-9
+
+### Changed
+
+- Main Menu and other things to show OS Crisis Engine
+
+- Removed the BotPlay text because the new HUD shows BotPlay is on. 
+
+- Modified the watermark to look kinda like the one from Strident Engine (I didn't rename this modified version of OS Engine for nothing)
+
+### Added
+
+- A modified version of the HUD from Dave and Bambi Definitive Edition
+
+## [1.5.2 (Modified OS v1.5.1)] - 2022-10-4
 
 ### Changed
 
