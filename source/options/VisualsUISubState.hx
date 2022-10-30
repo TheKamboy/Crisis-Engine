@@ -100,7 +100,7 @@ class VisualsUISubState extends BaseOptionsMenu
 			'hudStyle',
 			'string',
 			'OSC',
-			['OSC', 'Psych']);
+			['OSC', 'Psych', 'Kade']);
 		addOption(option);
 
 		var option:Option = new Option('Colorblind Filter',

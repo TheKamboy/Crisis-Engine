@@ -1304,6 +1304,11 @@ class PlayState extends MusicBeatState
 			scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			scoreTxt.scrollFactor.set();
 			scoreTxt.borderSize = 1.25;
+		} else if (ClientPrefs.hudStyle == "Kade") {
+			scoreTxt = new FlxText(FlxG.width / 2 - 235, healthBarBG.y + 50, 0, "", 20);
+			scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+			scoreTxt.scrollFactor.set();
+			scoreTxt.borderSize = 1;
 		}
 
 		if (!ClientPrefs.hideScoreText && !ClientPrefs.hideHud) {
@@ -2520,6 +2525,15 @@ class PlayState extends MusicBeatState
 			+ ' | Misses: ' + songMisses
 			+ ' | Rating: ' + ratingName
 			+ (ratingName != '?' ? ' (${Highscore.floorDecimal(ratingPercent * 100, 2)}%) - $ratingFC' : '');
+		} else if (ClientPrefs.hudStyle == "Kade") {
+			scoreTxt.text = 'Score: ' + songScore + ' | Combo Breaks: ' + songMisses + ' | Accuracy: ';
+			if(ratingName != '?')
+				scoreTxt.text += Highscore.floorDecimal(ratingPercent * 100, 2) + '% | ' + ratingFC + ratingCool;
+				else
+				scoreTxt.text += '0% | N/A';
+			if(cpuControlled) {
+				scoreTxt.text = 'BOTPLAY'
+			}
 		}
 
 		if(ClientPrefs.scoreZoom && !miss && !cpuControlled)
