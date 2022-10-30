@@ -95,6 +95,14 @@ class VisualsUISubState extends BaseOptionsMenu
 			['Classic', 'New']);
 		addOption(option);
 
+		var option:Option = new Option('HUD Style',
+			'What do you want your HUD to look like?',
+			'hudStyle',
+			'string',
+			'OSC',
+			['OSC', 'Psych']);
+		addOption(option);
+
 		var option:Option = new Option('Colorblind Filter',
 			'You can set colorblind filter (makes the game more playable for colorblind people)',
 			'colorblindMode',

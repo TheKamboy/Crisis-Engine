@@ -1294,11 +1294,17 @@ class PlayState extends MusicBeatState
 		// scoreTxt.scrollFactor.set();
 		// scoreTxt.borderSize = 1.2;
 
-		// VDABDE Settings
-		scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 20);
-		scoreTxt.setFormat(Paths.font("vcr.ttf"), 17, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		scoreTxt.scrollFactor.set();
-		scoreTxt.borderSize = 1.25;
+		if (ClientPrefs.hudStyle == "OSC") {
+			scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 20);
+			scoreTxt.setFormat(Paths.font("vcr.ttf"), 17, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			scoreTxt.scrollFactor.set();
+			scoreTxt.borderSize = 1.25;
+		} else if (ClientPrefs.hudStyle == "Psych") {
+			scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 20);
+			scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			scoreTxt.scrollFactor.set();
+			scoreTxt.borderSize = 1.25;
+		}
 
 		if (!ClientPrefs.hideScoreText && !ClientPrefs.hideHud) {
 			scoreTxt.visible = true;
@@ -2478,35 +2484,42 @@ class PlayState extends MusicBeatState
 
 	public function updateScore(miss:Bool = false)
 	{
-		if(ratingName == '?') {
-			scoreTxt.text = 'Score: ' + songScore 
-			+ ' | Combo Breaks: ' + songMisses 
-			+ ' | Average: ?'
-			+ ' | Accuracy: ' + ratingName;
-		} else {
-			scoreTxt.text = 'Score: ' + songScore 
-			+ ' | Combo Breaks: ' + songMisses 
-			+ ' | Average: ' + Math.round(averageMs) + 'ms'
-			+ ' | Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '%' 
-			+ ' | ' + ratingName + ' [' + ratingFC + ']';
-		}
-
-		if(cpuControlled) {
-			scoreTxt.text = 'Cheater! | BotPlay ';
-		}
-		if(practiceMode && ratingName == "?" && !cpuControlled) {
-			scoreTxt.text = 'Score: ' + songScore 
-			+ ' | Combo Breaks: ' + songMisses 
-			+ ' | Average: ?'
-			+ ' | Accuracy: ' + ratingName
-			+ ' | Practice Mode';
-		} else if (practiceMode && !cpuControlled) {
-			scoreTxt.text = 'Score: ' + songScore 
-			+ ' | Combo Breaks: ' + songMisses 
-			+ ' | Average: ' + Math.round(averageMs) + 'ms'
-			+ ' | Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '%' 
-			+ ' | ' + ratingName + ' [' + ratingFC + ']'
-			+ ' | Practice Mode';
+		if (ClientPrefs.hudStyle == "OSC") {
+			if(ratingName == '?') {
+				scoreTxt.text = 'Score: ' + songScore 
+				+ ' | Combo Breaks: ' + songMisses 
+				+ ' | Average: ?'
+				+ ' | Accuracy: ' + ratingName;
+			} else {
+				scoreTxt.text = 'Score: ' + songScore 
+				+ ' | Combo Breaks: ' + songMisses 
+				+ ' | Average: ' + Math.round(averageMs) + 'ms'
+				+ ' | Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '%' 
+				+ ' | ' + ratingName + ' [' + ratingFC + ']';
+			}
+	
+			if(cpuControlled) {
+				scoreTxt.text = 'Cheater! | BotPlay ';
+			}
+			if(practiceMode && ratingName == "?" && !cpuControlled) {
+				scoreTxt.text = 'Score: ' + songScore 
+				+ ' | Combo Breaks: ' + songMisses 
+				+ ' | Average: ?'
+				+ ' | Accuracy: ' + ratingName
+				+ ' | Practice Mode';
+			} else if (practiceMode && !cpuControlled) {
+				scoreTxt.text = 'Score: ' + songScore 
+				+ ' | Combo Breaks: ' + songMisses 
+				+ ' | Average: ' + Math.round(averageMs) + 'ms'
+				+ ' | Accuracy: ' + Highscore.floorDecimal(ratingPercent * 100, 2) + '%' 
+				+ ' | ' + ratingName + ' [' + ratingFC + ']'
+				+ ' | Practice Mode';
+			}
+		} else if (ClientPrefs.hudStyle == "Psych") {
+			scoreTxt.text = 'Score: ' + songScore
+			+ ' | Misses: ' + songMisses
+			+ ' | Rating: ' + ratingName
+			+ (ratingName != '?' ? ' (${Highscore.floorDecimal(ratingPercent * 100, 2)}%) - $ratingFC' : '');
 		}
 
 		if(ClientPrefs.scoreZoom && !miss && !cpuControlled)

@@ -31,6 +31,7 @@ class ClientPrefs {
 	public static var ghostTapping:Bool = true;
 	public static var timeBarType:String = 'Time Left';
 	public static var iconbops:String = 'OS';
+	public static var hudStyle:String = 'OSC';
 	public static var colorblindMode:String = 'None';
 	public static var opponentStrums:Bool = false;
 	public static var scoreZoom:Bool = true;
@@ -146,6 +147,7 @@ class ClientPrefs {
 		FlxG.save.data.themedmainmenubg = themedmainmenubg;
 		FlxG.save.data.autotitleskip = autotitleskip;
 		FlxG.save.data.iconbops = iconbops;
+		FlxG.save.data.hudStyle = hudStyle;
 
 		FlxG.save.data.ratingOffset = ratingOffset;
 		FlxG.save.data.showcaseMode = showcaseMode;
@@ -324,6 +326,9 @@ class ClientPrefs {
 		}
 		if(FlxG.save.data.pauseMusic != null) {
 			noteSkinSettings = FlxG.save.data.noteSkinSettings;
+		}
+		if(FlxG.save.data.hudStyle != null) {
+			hudStyle = FlxG.save.data.hudStyle;
 		}
 		if(FlxG.save.data.gameplaySettings != null)
 		{
