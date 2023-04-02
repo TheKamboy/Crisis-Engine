@@ -2532,7 +2532,7 @@ class PlayState extends MusicBeatState
 				else
 				scoreTxt.text += '0% | N/A';
 			if(cpuControlled) {
-				scoreTxt.text = 'BOTPLAY'
+				scoreTxt.text = 'BOTPLAY';
 			}
 		}
 
