@@ -1,1 +1,5 @@
-
+jobs:
+  my_first_job:
+    steps:
+      - name: Remove artifacts
+        uses: c-hive/gha-remove-artifacts@v1.2.0
