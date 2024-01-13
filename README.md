@@ -1,4 +1,4 @@
-# Thank you for checking out OS Crisis Engine! Now, onto the regular OS Engine ReadMe.
+# Thank you for checking out OS Crisis Engine!
 
 ![](https://media.discordapp.net/attachments/969211146412363828/980124443164672000/23336ff517a80f27.png?width=1101&height=701)
 
