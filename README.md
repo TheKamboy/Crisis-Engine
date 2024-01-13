@@ -1,1 +1,2 @@
-s
+![the new logo](https://raw.githubusercontent.com/TheKamboy/Crisis-Engine/main/art/crisisLogo.png)
+## This is currently going under LOTS of changes, please wait...
