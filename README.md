@@ -1,3 +1,5 @@
+# Because of time, OS Engine is not buildable, and I don't know how to fix it. I'm just going to make a custom version of Psych Engine
+
 ![the new logo](https://raw.githubusercontent.com/TheKamboy/Crisis-Engine/main/art/crisisLogo.png)
 
 The stupid customized version of [OS Engine](https://github.com/notweuz/FNF-OSEngine) I made.
