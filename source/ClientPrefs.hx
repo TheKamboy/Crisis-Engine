@@ -258,7 +258,7 @@ class ClientPrefs {
 		if(FlxG.save.data.hideWatermark != null) {
 			hideWatermark = FlxG.save.data.hideWatermark;
 		}
-		if(FlxG.save.data.hideWatermark != null) {
+		if(FlxG.save.data.hideScoreText != null) {
 			hideScoreText = FlxG.save.data.hideScoreText;
 		}
 		if(FlxG.save.data.noteOffset != null) {
