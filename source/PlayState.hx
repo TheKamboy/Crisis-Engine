@@ -27,7 +27,7 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
-import flixel.system.FlxSound;
+import flixel.sound.FlxSound;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
@@ -5065,12 +5065,17 @@ class PlayState extends MusicBeatState
 				if(note.isSustainNote && !note.animation.curAnim.name.endsWith('end')) {
 					time += 0.15;
 				}
-				StrumPlayAnim(false, Std.int(Math.abs(note.noteData)), time);
+
+				if (ClientPrefs.noStrumLight != 'Always' || ClientPrefs.noStrumLight != 'Botplay Only') {
+					StrumPlayAnim(false, Std.int(Math.abs(note.noteData)), time);
+				}
 			} else {
 				var spr = playerStrums.members[note.noteData];
 				if(spr != null)
 				{
-					spr.playAnim('confirm', true);
+					if (ClientPrefs.noStrumLight != 'Always') {
+						spr.playAnim('confirm', true);
+					}
 				}
 			}
 			note.wasGoodHit = true;

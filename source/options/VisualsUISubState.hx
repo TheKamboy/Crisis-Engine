@@ -103,6 +103,14 @@ class VisualsUISubState extends BaseOptionsMenu
 			['OSC', 'Psych', 'Kade']);
 		addOption(option);
 
+		var option:Option = new Option('No Strum Light',
+			'The Strums won\'t light up with this.',
+			'noStrumLight',
+			'string',
+			'Botplay Only',
+			['Botplay Only', 'Always', 'Disabled']);
+		addOption(option);
+
 		var option:Option = new Option('Colorblind Filter',
 			'You can set colorblind filter (makes the game more playable for colorblind people)',
 			'colorblindMode',

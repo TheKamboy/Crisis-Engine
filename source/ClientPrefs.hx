@@ -345,6 +345,10 @@ class ClientPrefs {
 				gameplaySettings.set(name, value);
 			}
 		}
+
+		if (FlxG.save.data.noStrumLight != null) {
+			noStrumLight = FlxG.save.data.noStrumLight;
+		}
 		
 		// flixel automatically saves your volume!
 		if(FlxG.save.data.volume != null)
