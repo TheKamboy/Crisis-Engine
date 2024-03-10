@@ -50,6 +50,10 @@ class ClientPrefs {
 	public static var removePerfects:Bool = false;
 	public static var characterTrail:Bool = false;
 	public static var checkForUpdates:Bool = true;
+
+	// other settings
+	public static var noStrumLight = 'Botplay Only'; // Options: Disabled, Botplay Only, Always
+
 	public static var gameplaySettings:Map<String, Dynamic> = [
 		'scrollspeed' => 1.0,
 		'scrolltype' => 'multiplicative', 
@@ -148,6 +152,9 @@ class ClientPrefs {
 		FlxG.save.data.autotitleskip = autotitleskip;
 		FlxG.save.data.iconbops = iconbops;
 		FlxG.save.data.hudStyle = hudStyle;
+
+		// Other
+		FlxG.save.data.noStrumLight = noStrumLight;
 
 		FlxG.save.data.ratingOffset = ratingOffset;
 		FlxG.save.data.showcaseMode = showcaseMode;
