@@ -326,7 +326,7 @@ class TitleState extends MusicBeatState
 		}
 		gfDance.antialiasing = ClientPrefs.globalAntialiasing;
 
-		titlestatebg = new FlxBackdrop(Paths.image('loading'), 0.2, 0, true, true);
+		titlestatebg = new FlxBackdrop(Paths.image('loading'), flixel.util.FlxAxes.fromBools(true, true), 0, true, true);
 		titlestatebg.velocity.set(200, 110);
 		titlestatebg.updateHitbox();
 		titlestatebg.alpha = 0.5;

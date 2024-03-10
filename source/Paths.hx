@@ -21,6 +21,10 @@ import flixel.graphics.FlxGraphic;
 import openfl.display.BitmapData;
 import haxe.Json;
 
+#if !macro
+import flash.Lib;
+#end 
+
 import flash.media.Sound;
 
 using StringTools;

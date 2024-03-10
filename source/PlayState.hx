@@ -2528,7 +2528,7 @@ class PlayState extends MusicBeatState
 		} else if (ClientPrefs.hudStyle == "Kade") {
 			scoreTxt.text = 'Score: ' + songScore + ' | Combo Breaks: ' + songMisses + ' | Accuracy: ';
 			if(ratingName != '?')
-				scoreTxt.text += Highscore.floorDecimal(ratingPercent * 100, 2) + '% | ' + ratingFC + ratingCool;
+				scoreTxt.text += Highscore.floorDecimal(ratingPercent * 100, 2) + '% | ' + ratingFC;
 				else
 				scoreTxt.text += '0% | N/A';
 			if(cpuControlled) {
