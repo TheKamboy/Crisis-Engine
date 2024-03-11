@@ -1,4 +1,5 @@
-# Because of time, OS Engine is not buildable, and I don't know how to fix it. I'm just going to make a custom version of Psych Engine
+# Because of time, OS Engine is not buildable, and I don't know how to fix it.
+[Go here for a version of Crisis Engine based on Psych Engine](https://github.com/TheKamboy/crisis-engine-reborn)
 
 ![the new logo](https://raw.githubusercontent.com/TheKamboy/Crisis-Engine/main/art/crisisLogo.png)
 
